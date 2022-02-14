@@ -21,4 +21,4 @@ There are only one .css file (style.css)
 
 *****************************************************************************************************************
 
-Please open Home.html to start the dummy page.
+Please open index.html to start the dummy page.
