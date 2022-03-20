@@ -1,10 +1,8 @@
 IERG 4210 Assignment Phase 3
-Name: Cheng Wing Lam
-SID: 1155125313
+
 
 *****************************************************************************************************************
-Please access ip-address of 3.136.1.162 to view the website.
-My database id named cart.db. (in the zip file)
+
 
 This phase is focus on shopping list.
 
