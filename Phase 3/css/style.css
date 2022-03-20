@@ -1,0 +1,272 @@
+.topnav {
+    overflow: hidden;
+    padding-top: 20px;
+    padding-left: 20px;
+    background-color: navy;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Shopping-List {
+    padding-right: 10px;
+    float: right;
+    margin-left: 250px;
+
+}
+
+.Shopping-List:hover .shopping-detail {
+    display: block !important;
+}
+.Shopping-List:hover{
+    min-width: 450px;
+}
+
+.shopping-detail {
+    width: 450px;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    display: none;
+    /* overflow-wrap: break-word; */
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: white;
+    color: darkgreen;
+}
+
+#cart-title{
+    margin: 0;
+    font-size: x-large;
+    color: white;
+    padding-left: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+/* .cart-remove-btn{
+    background-color: red;
+    color: blue;
+} */ 
+
+.cart-prod-quan {
+    width: 50px;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 600px;
+    height: 100%;
+    overflow: auto;
+    min-height: 600px;
+}
+
+section {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.mainpage {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.mainpage #mainpage-topic {
+    color: red;
+}
+
+.mainpage img {
+    max-width: 50%;
+}
+
+.categories {
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 200px;
+}
+
+.categories-ul {
+    padding-top: 20px;
+    position: absolute;
+}
+
+.categories a {
+    font-size: larger;
+    text-decoration: none;
+}
+
+a.homepage:link,
+a.homepage:visited {
+    font-size: 40px;
+    text-decoration: none;
+    color: white;
+}
+
+.path {
+    color: pink;
+    width: auto;
+    vertical-align: top;
+    float: left;
+    padding-bottom: 5px;
+}
+
+.path a {
+    /*text-decoration: none;*/
+    color: pink;
+    font-size: large;
+}
+
+ul.product-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+}
+
+ul.product-list li {
+    padding-top: 30px;
+    text-align: center;
+    min-height: 20%;
+    float: left;
+}
+
+ul.product-list img {
+    /* width: 180px; */
+    height: 180px;
+}
+
+ul.product-list a {
+    text-decoration: none;
+}
+
+ul.product-list button {
+    border-radius: 5px;
+    border: none;
+    background-color: crimson;
+    color: white;
+    font-size: 10px;
+}
+
+ul.product-detail {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
+}
+
+ul.product-detail li {
+    padding: 40px;
+    font-size: x-large;
+    min-height: 20%;
+    float: left;
+}
+
+ul.product-detail img {
+    width: 300px;
+    height: 300px;
+}
+
+ul.product-detail button {
+    border-radius: 8px;
+    border: none;
+    background-color: crimson;
+    color: white;
+    font-size: x-large;
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    top: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.container {
+    border: 5px solid black;
+}
+
+.container div {
+    border: 5px solid red;
+}
+
+#admin-panel {
+    margin: 5px;
+}
+
+#admin-panel td {
+    padding: 5px;
+}
+
+.cat {
+    background-color: #eeeeee;
+}
+
+.cat-legend {
+    background-color: gray;
+    color: white;
+    padding: 5px;
+}
+
+.prod {
+    background-color: navajowhite;
+}
+
+.prod-legend {
+    background-color: darksalmon;
+    color: white;
+    padding: 5px;
+}
+
+.drop-zone {
+    width: 200px;
+    height: 200px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 500;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    color: rebeccapurple;
+    border: 5px dashed brown;
+    border-radius: 10px;
+}
+
+.drop-zone-over {
+    border-style: solid;
+}
+
+.drop-zone-thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #cccccc;
+    background-size: cover;
+    position: relative;
+}
+
+.drop-zone-thumb::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    text-align: center;
+}
+
+.panel-submit {
+    margin: 10px;
+}
