@@ -16,3 +16,7 @@ Using localStorage to store the shopping list.
 
 <img width="958" alt="Screenshot (12)" src="https://user-images.githubusercontent.com/60846680/160235231-549b6ef1-a634-4a11-9dce-e13000356792.png">
 
+Login page:
+![image](https://user-images.githubusercontent.com/60846680/160236876-2f985440-5d02-458a-9d2b-1c6807bd18c8.png)
+
+
