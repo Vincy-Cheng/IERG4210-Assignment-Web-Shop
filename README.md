@@ -20,3 +20,8 @@ Login page:
 ![image](https://user-images.githubusercontent.com/60846680/160236876-2f985440-5d02-458a-9d2b-1c6807bd18c8.png)
 
 
+Admin Page:
+![image](https://user-images.githubusercontent.com/60846680/160236902-69490d45-ebd9-4ce3-a520-2af2fbc36c76.png)
+
+
+
