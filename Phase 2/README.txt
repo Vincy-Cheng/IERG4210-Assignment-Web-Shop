@@ -98,3 +98,7 @@ Link: https://www.w3schools.com/css/
 P.S 
 
 I have put the images that I have used for the website inside the /lib/images folder.
+
+If you want to hide all folder in the URL
+->  remove all "Index" in directory in  /etc/httpd/conf/httpd.conf file.
+e.g Options Indexes FollowSymLinks -> Options FollowSymLinks
