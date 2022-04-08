@@ -1,3 +1,9 @@
+Graded: 27/28 
+Get mark deduction on showing Apache and php version (Totally forgot lol)
+Please follow this link to do hide the version of Apache and php version (https://www.uxlinux.com/hide-apache-and-php-version-on-ubuntu-centos-rhel-cwp-and-vesta-cp/)
+
+P.S may need to add sudo before command
+
 IERG 4210 Assignment Phase 2
 
 *****************************************************************************************************************
