@@ -1,0 +1,72 @@
+Step of hiding Apache and php version (for Centos/RHEL 6/7 Vestacp apache, AWS EC2 t2.mirco)
+
+Using "curl -I (Your domain)" to test
+
+Before hiding:
+HTTP/1.1 302 Found
+Date: Fri, 08 Apr 2022 14:45:48 GMT
+Server: Apache/2.4.52 () OpenSSL/1.0.2k-fips
+Location: (Your domain)
+Content-Type: text/html; charset=iso-8859-1
+
+HTTP/1.1 200 OK
+Date: Fri, 08 Apr 2022 14:45:48 GMT
+Server: Apache
+X-Powered-By: PHP/7.2.34
+Upgrade: h2,h2c
+Connection: Upgrade
+Content-Type: text/html; charset=UTF-8
+
+
+Hiding Apache version:
+
+1. Modify the file
+  nano /etc/httpd/conf/httpd.conf 
+  OR 
+  sudo vi /etc/httpd/conf/httpd.conf
+  
+2. Search for ServerTokens and ServerSignature
+  If the file has these 2 sections, uncomment it
+  Need to be this -> 
+  
+  ServerTokens Prod
+  ServerSignature Off
+  
+  Make sure these 2 line is not commented
+  
+  If you cannot find these 2 sections, just simply add these 2 line in the httpd.conf file.(Anywhere is ok)
+  
+3. Save the file
+
+4. Restart Apache 
+  sudo service httpd restart 
+  OR
+  sudo systemctl restart httpd
+ 
+
+Hiding php version
+
+1.(Optional) Find the php configuration. (Normally should be /etc/php.ini, just ensure the location of the configuration file)
+  php -i | grep "Loaded Configuration File"
+
+2. Modify the file 
+  nano /etc/php.ini
+  OR
+  sudo vi /etc/php.ini
+
+3. Change "expose_php = On" to "expose_php = Off"
+  Hint: type / to find the keyword of expose, much faster
+  
+4. Save the file
+
+5. Restart php-fpm 
+  sudo service php-fpm restart
+  
+  
+After hiding:
+HTTP/1.1 200 OK
+Date: Fri, 08 Apr 2022 15:40:53 GMT
+Server: Apache
+Upgrade: h2,h2c
+Connection: Upgrade
+Content-Type: text/html; charset=UTF-8
