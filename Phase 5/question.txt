@@ -1,0 +1,100 @@
+Q1: The assignment marking checklist seems to be designed for the legacy APIs.
+
+A1: It is an old marking checklist for legacy APIs, so it would be natural if you decide to use the legacy APIs. 
+It is confusing to understand why these requirements are set before reading the third reference in the marking list, 
+which is PayPal PHP Website Integration Tutorial | Think Tank. You may get what you want from it.
+
+As IERG4210 starts to embrace new APIs, it is not required to strictly follow the marking checklist as long as the four 
+requirements of creation of sandbox accounts, integration of Paypal checkout standard, setup of an IPN Listener, and 
+maintenance of database about orders are fulfilled. The grading of this phase for those who try new APIs will not be harsh.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q2: Explain more about the creation and settings of sandbox accounts.
+
+A2: First Sign up for a real Paypal account, log into Sandbox accounts - PayPal Developer, and create two test accounts 
+by clicking the blue bottom “Create Account”. One account is a merchant account, and the other is a buyer account. 
+In this picture, they are called Bussiness Type and Personal Type respectively. Save their Email ID and System-generated 
+Password for future use.
+
+These two accounts could be logged in in the sandbox environment, which is PayPal: Send Money, Pay Online or Set Up 
+a Merchant Account, not PayPal: Send Money, Pay Online or Set Up a Merchant Account. Note that almost all real PayPal URLs 
+have the corresponding sandbox PayPal URLs, by adding sandbox in their subdomains. To set the IPN URL of the merchant 
+account, please go to Account Settings - PayPal. It is the “necessary settings” in Step 1 of the checklist.
+
+Then go to Applications - PayPal Developer, a default application should have been created for the business type account 
+in the sandbox. Click on it to view details, save the Client ID, and it will be useful when using the client-side javascript 
+code for checkout.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q3: Explain more about the workflow of checkout and IPN.
+
+A3: The workflow of checkout is “client-side order creation” -> “redirection to PayPal checkout” -> “Upload order information 
+to server-side database” -> “Response to buyers with thanks page (order is pending and not yet completed)” -> “Update to 
+buyers about orders after the receipt of IPN (order is settled, insufficient money paid, …)”.
+
+The workflow of IPN is “checkout status update, 
+i.e. transaction completed” 
+-> “IPN sent from Paypal to server-side IPN Listener” 
+-> “Response to Paypal to verify the IPN” 
+-> “IPN Check against previous client-side order information” 
+-> “Store transaction-related information in the server-side databse (same or different table)”.
+
+There is a mistake in Step 4 of the checklist, since the product list is already saved in the workflow of checkout, it 
+is not necessary to save it again in the workflow of IPN.
+
+As I mentioned in the tutorial, IPN is a reliable information source for orders, so it is not sufficient to use only 
+the workflow of checkout. Otherwise, you may be vulnerable to fraud because the amount of money you received is less than 
+what is uploaded to your server if a buyer modifies your code in the browser. Furthermore, IPN could also be raised by 
+the server as a way to communicate with Paypal, for example, refund partial money of an order, the cancellation of an 
+order, or else, though it is not required to be implemented in this class. So it is an important technique to master.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q4: Explain the meanings of the hidden fields in Step 2 of the checklist.
+
+A4: The checklist is old and contains an error. The first reference does not have content about these fields. 
+Actually, these fields are variables in the IPN Message. The correct reference is IPN and PDT variables.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q5: Explain what is the digest and the reason for using it in Steps 3 & 4.
+
+A5: The comparison of the digest is another way of checking whether all the variables enclosed in the digest are the same. 
+It is an alternative way to achieve the logic mentioned on Page 17 of Tutorial 9. It is totally ok if you try another 
+method to achieve the same effect.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q6: The sample code does not integrate with IPN Simulator well. The IPN Simulator will warn about “IPN was not sent, and 
+the handshake was not received. Review your information”.
+
+A6: This happens when the IPN Listener of the sample code is down, and the IPN Simulator cannot get a reply from the 
+IPN Listener. Please follow the following ways to fix it.
+
+Use the sample code uploaded on the blackboard. The sample code on the blackboard differs from the sample code on the 
+github (listed on Page 11 and Page 18 of Tutorial 9) in that the lines of the usage of the database are commented out in 
+the sample code on the blackboard. Or you have to create a database by yourself and install a PHP extension named php-sql 
+for function support. Install a php extension named php-cli for function support of the curl command. 
+See lampp - PHP Fatal error: Call to undefined function curl_init() - Stack Overflow.
+Thanks to YEUNG Man Wai, there is another simpler and clear demonstration of an IPN Listener at 
+PayPal’s IPN (Instant Payment Notification) in Php - Tutorial & Sample code - YouTube. The sample code of this video, 
+namely listener.php at http://crazytom.com/p/listener.zip, has no such questions. I will also send it to the blackboard 
+later. Host this PHP file at your server by php -S 0.0.0.0:80 and use the URL comprised of domain-name 
+or ip address + /listener.php to test with the IPN Simulator.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Q7: What is the recommended database schema for orders?
+
+A7: Though the sample code uses the database table named payments, it is not required to use payments in your real code. 
+The sample code is only a sample code for you to understand how to use the legacy checkout and communicate with Paypal IPN.
+
+The design of orders is kind of up to you. Here is my recommended design: 
+UUID + Order Message (digest, total price, currency, merchant’s email address, random salt, 
+JSON-formatted product list, individual prices, …) 
++ IPN Message (txn_id, payment_type, payment_status, …). 
+
+The reason to choose JSON to store product lists is that some databases, i.e., MySQL cannot handle the array data type, 
+and it is not likely for a buyer to retrieve only part of the product list of their orders.
