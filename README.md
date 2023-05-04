@@ -1,9 +1,13 @@
 # IERG4210-Assignment-Web-Shop
+
+****The demo webpage is no longer existed.**
+
+
+
 IERG4210 Web Programming and Security (Spring 2022)
 
 CUHK IERG 4210 Assignment Shopping Website
 
-****The demo webpage is no longer existed.**
 
 Use php, HTML, CSS and Javascript to make a website. Can access database.(SQLite)
 
